@@ -50,7 +50,7 @@ struct dictionaryEntry
 };
 typedef struct dictionaryEntry DictionaryEntry;
 
-const DictionaryEntry dictionary[]=
+static const DictionaryEntry dictionary[]=
 {
 	{"le",ARTICLE},
 	{"chat",NOUN},
