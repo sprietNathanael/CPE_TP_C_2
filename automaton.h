@@ -22,7 +22,7 @@
 #define INPUT_STATE_NUMBER 7
 #define WORD_MAX_SIZE 255
 
-#define DICTIONARY_SIZE 18
+#define DICTIONARY_SIZE 19
 
 /*
  ***************************** Enumerations *************************
@@ -114,6 +114,7 @@ static const DictionaryEntry dictionary[]=
 	{"mange",VERB},
 	{"dort",VERB},
 	{"joue",VERB},
+	{"est",VERB},
 	{"petite",ADJECTIVE},
 	{"petit",ADJECTIVE},
 	{"joli",ADJECTIVE},
