@@ -11,11 +11,45 @@
 #include <stdlib.h>
 #include "automaton.h"
 
+#define TEST_NUMBER 13
+#define TEST_MAX_SIZE 1000
+
 int main()
 {
+	// Initialise automaton
 	generateTransitionMatrix();
-	char testString[1000] = "le joli chat joue.";
-	int test = parseSentence(testString);
+
+	// Make an array of string to test
+	char test[TEST_NUMBER][TEST_MAX_SIZE];
+	strcpy(test[0],"le joli chat joue.");
+	strcpy(test[1],"le ,joli chat ; joue.");
+	strcpy(test[2],"la grosse souris verte mange le joli petit chat blanc.");
+	strcpy(test[3],"la grosse souris verte mange Jean.");
+	strcpy(test[4],"la grosse souris verte mange le joli petit chat blanc.");
+	strcpy(test[5],"Jean joue.");
+	strcpy(test[6],"Jean mange Martin");
+	strcpy(test[7],"Jean mange le chat.");
+	strcpy(test[8],"la verte souris grosse petit mange le blanc verte chat petit.");
+	strcpy(test[9],".");
+	strcpy(test[10],"");
+	strcpy(test[11],"le joli chat joue");
+	strcpy(test[12],"le joli chat miaule.");
+
+	// Test the array
+	int i = 0;
+	for(i = 0; i < TEST_NUMBER; i++)
+	{
+		if(parseSentence(test[i]))
+		{
+			printf("The sentence is correct\n");
+		}
+		else
+		{
+			printf("The sentence is not correct\n");
+		}
+	}
+
+	// Free the automaton
 	freeTransitionMatrix();
 	return 0;
 }
