@@ -28,7 +28,11 @@ int main(int argc, char const *argv[])
 		// Check if the file exists
 		if(customDictionary == NULL)
 		{
-			printf("The file '%s' does not exitst\n",argv[1]);
+			printf(ANSI_COLOR_RED"The file '%s' does not exitst"ANSI_COLOR_RESET"\n",argv[1]);
+		}
+		else
+		{
+			printf(ANSI_COLOR_GREEN"The custom dictionary '%s' has been added"ANSI_COLOR_RESET"\n", argv[1]);
 		}
 	}
 
@@ -66,11 +70,12 @@ int main(int argc, char const *argv[])
 		}
 	}
 
+	printf("\n---------------------\n");
 	char user_entry[TEST_MAX_SIZE];
 	int userEntryLoop = 1;
 	do
 	{
-		printf("\n\n\nEntrez une phrase à analyser  ('quit' pour quitter) :\n");
+		printf("Entrez une phrase à analyser  ('quit' pour quitter) :\n");
 		scanf("%[^\n]%*c", user_entry);
 		if(strcmp(user_entry,"quit"))
 		{
