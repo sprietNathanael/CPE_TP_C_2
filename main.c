@@ -62,11 +62,11 @@ int main(int argc, char const *argv[])
 	{
 		if(parseSentence(test[i]))
 		{
-			printf(ANSI_COLOR_GREEN"The sentence is correct"ANSI_COLOR_RESET"\n");
+			printf(ANSI_COLOR_GREEN"✓ The sentence is correct"ANSI_COLOR_RESET"\n");
 		}
 		else
 		{
-			printf(ANSI_COLOR_RED"The sentence is not correct"ANSI_COLOR_RESET"\n");
+			printf(ANSI_COLOR_RED"✗ The sentence is not correct"ANSI_COLOR_RESET"\n");
 		}
 	}
 
@@ -81,11 +81,11 @@ int main(int argc, char const *argv[])
 		{
 			if(parseSentence(user_entry))
 			{
-				printf(ANSI_COLOR_GREEN"The sentence is correct"ANSI_COLOR_RESET"\n");
+				printf(ANSI_COLOR_GREEN"✓ The sentence is correct"ANSI_COLOR_RESET"\n");
 			}
 			else
 			{
-				printf(ANSI_COLOR_RED"The sentence is not correct"ANSI_COLOR_RESET"\n");
+				printf(ANSI_COLOR_RED"✗ The sentence is not correct"ANSI_COLOR_RESET"\n");
 			}
 		}
 		else
