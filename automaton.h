@@ -9,6 +9,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #ifndef AUTOMATON_H
 #define AUTOMATON_H
@@ -68,6 +69,6 @@ InputState** generateTransitionMatrix();
 
 void freeTransitionMatrix(InputState** transitionMatrix);
 
-void parseSentence();
+int parseSentence(char* sentence);
 
 #endif

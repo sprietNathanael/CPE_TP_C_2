@@ -58,3 +58,19 @@ void freeTransitionMatrix(InputState** matrix)
 	free(matrix);
 
 }
+
+int parseSentence(char* sentence)
+{
+	const char delimiter[2] = " ";
+	char *foundWord;
+	foundWord = strtok(sentence, delimiter);
+
+	/* walk through other tokens */
+	while( foundWord != NULL )
+	{
+	  printf( "%s\n", foundWord);
+
+	  foundWord = strtok(NULL, delimiter);
+	}
+	return(1);
+}
