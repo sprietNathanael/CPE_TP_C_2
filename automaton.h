@@ -66,6 +66,8 @@ const DictionaryEntry dictionary[]=
 
 InputState** generateTransitionMatrix();
 
+void freeTransitionMatrix(InputState** transitionMatrix);
+
 void parseSentence();
 
 #endif

@@ -44,3 +44,17 @@ InputState** generateTransitionMatrix()
 	array[7][5] = FOUND_FINAL_PERIOD;
 	return(array);
 }
+
+void freeTransitionMatrix(InputState** matrix)
+{
+	int rowIncrement;
+	// Browse the rows of the  matrix
+	for(rowIncrement = 0; rowIncrement < INPUT_STATE_NUMBER; rowIncrement++)
+	{
+		// Free the second level of pointers
+		free(matrix[rowIncrement]);
+	}
+	// Free the first level of pointer
+	free(matrix);
+
+}
