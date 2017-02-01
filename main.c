@@ -14,16 +14,18 @@
 
 #define TEST_NUMBER 13
 #define TEST_MAX_SIZE 1000
-
-int main()
+int main(int argc, char const *argv[])
 {
 	Dictionary* customDictionary = NULL;
-	// Read a file
-	customDictionary = readDictionary("./dictionary.txt");
-	// Check if the file exists
-	if(customDictionary == NULL)
+	if(argc > 1)
 	{
-		printf("The file './dictionary.txt' does not exitst\n");
+		// Read a file
+		customDictionary = readDictionary((char*)argv[1]);
+		// Check if the file exists
+		if(customDictionary == NULL)
+		{
+			printf("The file '%s' does not exitst\n",argv[1]);
+		}
 	}
 
 	// Initialise automaton
