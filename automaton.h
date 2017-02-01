@@ -15,7 +15,7 @@
 #define AUTOMATON_H
 
 #define STATE_NUMBER 10
-#define INPUT_STATE_NUMBER 6
+#define INPUT_STATE_NUMBER 7
 #define WORD_MAX_SIZE 255
 
 enum inputState
@@ -40,7 +40,8 @@ enum inputType
 	NOUN=2,
 	VERB=3,
 	PROPER_NOUN=4,
-	PERIOD=5
+	PERIOD=5,
+	UNKNOWN_WORD=6
 };
 typedef enum inputType InputType;
 
@@ -68,6 +69,7 @@ static const DictionaryEntry dictionary[]=
 InputState** generateTransitionMatrix();
 
 void freeTransitionMatrix(InputState** transitionMatrix);
+InputType findTypeOfWord(char* word);
 
 int parseSentence(char* sentence);
 

@@ -76,6 +76,20 @@ int parseSentence(char* sentence)
 	  printf( "%s\n", foundWord);
 
 	  foundWord = strtok(NULL, delimiter);
+		InputType wordType = findTypeOfWord(foundWord);
 	}
 	return(1);
+}
+
+InputType findTypeOfWord(char* word)
+{
+	int i = 0;
+	for(i = 0; i < DICTIONARY_SIZE; i++)
+	{
+		if(!strcmp(dictionary[i].word,word))
+		{
+			return(dictionary[i].inputType);
+		}
+	}
+	return(UNKNOWN_WORD);
 }
