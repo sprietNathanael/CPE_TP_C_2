@@ -18,6 +18,8 @@
 #define INPUT_STATE_NUMBER 7
 #define WORD_MAX_SIZE 255
 
+#define DICTIONARY_SIZE 18
+
 enum inputState
 {
 	WAIT_ARTICLE=0,
@@ -55,15 +57,23 @@ typedef struct dictionaryEntry DictionaryEntry;
 static const DictionaryEntry dictionary[]=
 {
 	{"le",ARTICLE},
+	{"la",ARTICLE},
 	{"chat",NOUN},
 	{"souris",NOUN},
 	{"mange",VERB},
-	{"la",ARTICLE},
-	{"petite",ADJECTIVE},
-	{".",PERIOD},
-	{"bleu",ADJECTIVE},
 	{"dort",VERB},
-	{"julie",PROPER_NOUN}
+	{"joue",VERB},
+	{"petite",ADJECTIVE},
+	{"petit",ADJECTIVE},
+	{"joli",ADJECTIVE},
+	{"grosse",ADJECTIVE},
+	{"bleu",ADJECTIVE},
+	{"blanc",ADJECTIVE},
+	{"verte",ADJECTIVE},
+	{"Julie",PROPER_NOUN},
+	{"Jean",PROPER_NOUN},
+	{"Martin",PROPER_NOUN},
+	{".",PERIOD}
 };
 
 InputState** generateTransitionMatrix();
