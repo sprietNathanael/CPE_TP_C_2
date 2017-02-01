@@ -9,58 +9,57 @@
 
 #include "automaton.h"
 
-InputState** generateTransitionMatrix()
+void generateTransitionMatrix()
 {
 	int rowIncrement = 0;
-	InputState** array;
 	// Memory allocation for the first level of pointer
-	array = malloc(STATE_NUMBER*sizeof(InputState*));
+	transitionMatrix = malloc(STATE_NUMBER*sizeof(InputState*));
 	// Browse the rows of the array
 	for(rowIncrement = 0; rowIncrement < STATE_NUMBER; rowIncrement++)
 	{
 		// Memory allocation for the second level of pointers
-		array[rowIncrement] = malloc(INPUT_STATE_NUMBER*sizeof(InputState));
+		transitionMatrix[rowIncrement] = malloc(INPUT_STATE_NUMBER*sizeof(InputState));
 		int colIncrement = 0;
 		// Browse the columns of the array
 		for(colIncrement = 0; colIncrement < INPUT_STATE_NUMBER; colIncrement++)
 		{
-			array[rowIncrement][colIncrement] = NOT_CORRECT;
+			transitionMatrix[rowIncrement][colIncrement] = NOT_CORRECT;
 		}
 	}
-	array[0][0] = FOUND_FIRST_ARTICLE;
-	array[0][4] = FOUND_FIRST_PROPER_NOUN;
-	array[1][1] = FOUND_FIRST_ARTICLE;
-	array[1][2] = FOUND_FIRST_NOUN;
-	array[2][1] = FOUND_FIRST_NOUN;
-	array[2][3] = FOUND_VERB;
-	array[3][1] = FOUND_SECOND_ARTICLE;
-	array[3][4] = FOUND_SECOND_PROPER_NOUN;
-	array[3][5] = FOUND_FINAL_PERIOD;
-	array[4][3] = FOUND_VERB;
-	array[5][1] = FOUND_SECOND_NOUN;
-	array[5][2] = FOUND_SECOND_NOUN;
-	array[6][1] = FOUND_SECOND_NOUN;
-	array[6][5] = FOUND_FINAL_PERIOD;
-	array[7][5] = FOUND_FINAL_PERIOD;
-	return(array);
+	transitionMatrix[0][0] = FOUND_FIRST_ARTICLE;
+	transitionMatrix[0][4] = FOUND_FIRST_PROPER_NOUN;
+	transitionMatrix[1][1] = FOUND_FIRST_ARTICLE;
+	transitionMatrix[1][2] = FOUND_FIRST_NOUN;
+	transitionMatrix[2][1] = FOUND_FIRST_NOUN;
+	transitionMatrix[2][3] = FOUND_VERB;
+	transitionMatrix[3][1] = FOUND_SECOND_ARTICLE;
+	transitionMatrix[3][4] = FOUND_SECOND_PROPER_NOUN;
+	transitionMatrix[3][5] = FOUND_FINAL_PERIOD;
+	transitionMatrix[4][3] = FOUND_VERB;
+	transitionMatrix[5][1] = FOUND_SECOND_NOUN;
+	transitionMatrix[5][2] = FOUND_SECOND_NOUN;
+	transitionMatrix[6][1] = FOUND_SECOND_NOUN;
+	transitionMatrix[6][5] = FOUND_FINAL_PERIOD;
+	transitionMatrix[7][5] = FOUND_FINAL_PERIOD;
 }
 
-void freeTransitionMatrix(InputState** matrix)
+void freeTransitionMatrix()
 {
 	int rowIncrement;
 	// Browse the rows of the  matrix
 	for(rowIncrement = 0; rowIncrement < STATE_NUMBER; rowIncrement++)
 	{
 		// Free the second level of pointers
-		free(matrix[rowIncrement]);
+		free(transitionMatrix[rowIncrement]);
 	}
 	// Free the first level of pointer
-	free(matrix);
+	free(transitionMatrix);
 
 }
 
 int parseSentence(char* sentence)
 {
+	InputState currentState = WAIT_ARTICLE;
 	const char delimiter[2] = " ";
 	int sentenceLength = strlen(sentence);
 	if(sentence[sentenceLength-1] == '.' && sentence[sentenceLength-2] != ' ')
@@ -73,10 +72,10 @@ int parseSentence(char* sentence)
 	/* walk through other tokens */
 	while( foundWord != NULL )
 	{
-	  printf( "%s\n", foundWord);
-
-	  foundWord = strtok(NULL, delimiter);
 		InputType wordType = findTypeOfWord(foundWord);
+		currentState = transitionMatrix[currentState][wordType];
+		actionOfState(currentState)
+		foundWord = strtok(NULL, delimiter);
 	}
 	return(1);
 }

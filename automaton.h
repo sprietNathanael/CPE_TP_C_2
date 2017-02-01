@@ -76,9 +76,12 @@ static const DictionaryEntry dictionary[]=
 	{".",PERIOD}
 };
 
-InputState** generateTransitionMatrix();
+static InputState** transitionMatrix;
 
-void freeTransitionMatrix(InputState** transitionMatrix);
+void generateTransitionMatrix();
+
+void freeTransitionMatrix();
+
 InputType findTypeOfWord(char* word);
 
 int parseSentence(char* sentence);
