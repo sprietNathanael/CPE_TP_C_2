@@ -171,4 +171,10 @@ OutputState actionOfState(InputState state);
  */
 void removeOccurences(char* sentence, char charToRemove);
 
+/**
+ * Deduce the input type from a character
+ * @param  character	The input character
+ * @return     			The deduced input type
+ */
+InputType charToInputType(char character);
 #endif

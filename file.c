@@ -22,10 +22,30 @@ int readDictionary(char* path)
 	{
 		return(-1);
 	}
-	// Browse line by line
+	int linesNumber = 0;
+	// Browse line by line to get the number of lines
 	while(getline(&currentLine, &length, filePointer) != -1)
 	{
-		printf("Line : %s\n",currentLine);
+		linesNumber++;
+	}
+	// Memory allocation for the dictionary
+	DictionaryEntry* customDictionary = malloc(linesNumber*sizeof(DictionaryEntry*));
+
+	// Go back to the begining of file
+	rewind(filePointer);
+	char *foundWord;
+	int i = 0;
+	// Browse again line by line and put it in the dictionary
+	while(getline(&currentLine, &length, filePointer) != -1)
+	{
+		// Found the first word
+		foundWord = strtok(currentLine, " ");
+		strcpy(customDictionary[i].word,foundWord);
+		foundWord = strtok(NULL, " ");
+		customDictionary[i].inputType = charToInputType(foundWord[0]);
+		printf("%s : %s ; %d\n", currentLine, customDictionary[i].word, customDictionary[i].inputType);
+		i++;
+
 	}
 
 	fclose(filePointer);

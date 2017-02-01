@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "automaton.h"
 
 #ifndef FILE_H
 #define FILE_H

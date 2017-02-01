@@ -146,3 +146,35 @@ void removeOccurences(char* sentence, char charToRemove)
 	}
 	*write = '\0';
 }
+
+InputType charToInputType(char character)
+{
+	if(character == '0')
+	{
+		return(ARTICLE);
+	}
+	else if(character == '1')
+	{
+		return(ADJECTIVE);
+	}
+	else if(character == '2')
+	{
+		return(NOUN);
+	}
+	else if(character == '3')
+	{
+		return(VERB);
+	}
+	else if(character == '4')
+	{
+		return(PROPER_NOUN);
+	}
+	else if(character == '5')
+	{
+		return(PERIOD);
+	}
+	else
+	{
+		return(UNKNOWN_WORD);
+	}
+}
