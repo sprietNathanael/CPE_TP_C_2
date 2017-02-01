@@ -49,6 +49,20 @@ int main()
 		}
 	}
 
+	char user_entry[TEST_MAX_SIZE];
+	printf("\n\n\nEntrez une phrase à analyser :\n");
+	scanf("%[^\n]s", user_entry);
+	if(parseSentence(user_entry))
+	{
+		printf("The sentence is correct\n");
+	}
+	else
+	{
+		printf("The sentence is not correct\n");
+	}
+
+
+
 	// Free the automaton
 	freeTransitionMatrix();
 	return 0;
