@@ -1,0 +1,12 @@
+les 0
+chien 2
+loup 2
+balle 2
+court 3
+chasse 3
+gris 1
+grand 1
+Fanny 4
+Fred 4
+! 5
+? 5

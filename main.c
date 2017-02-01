@@ -10,12 +10,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "automaton.h"
+#include "file.h"
 
 #define TEST_NUMBER 13
 #define TEST_MAX_SIZE 1000
 
 int main()
 {
+	// Read a file
+	if(!readDictionary("./dictionary.txt"))
+	{
+		printf("dictionary.txt does not exists\n");
+	}
+
 	// Initialise automaton
 	generateTransitionMatrix();
 
