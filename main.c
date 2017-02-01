@@ -27,7 +27,7 @@ int main()
 	strcpy(test[3],"la grosse souris verte mange Jean.");
 	strcpy(test[4],"la grosse souris verte mange le joli petit chat blanc.");
 	strcpy(test[5],"Jean joue.");
-	strcpy(test[6],"Jean mange Martin");
+	strcpy(test[6],"Jean mange Martin.");
 	strcpy(test[7],"Jean mange le chat.");
 	strcpy(test[8],"la verte souris grosse petit mange le blanc verte chat petit.");
 	strcpy(test[9],".");
