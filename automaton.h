@@ -68,13 +68,13 @@ typedef enum outputState OutputState;
  */
 enum inputType
 {
-	UNKNOWN_WORD=-1,
 	ARTICLE=0,
 	ADJECTIVE=1,
 	NOUN=2,
 	VERB=3,
 	PROPER_NOUN=4,
-	PERIOD=5
+	PERIOD=5,
+	UNKNOWN_WORD=6
 };
 /**
 * @brief      A type defined over the inputType enumeration
