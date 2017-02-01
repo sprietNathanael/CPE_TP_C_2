@@ -34,11 +34,11 @@ void generateTransitionMatrix()
 	transitionMatrix[1][2] = FOUND_FIRST_NOUN;
 	transitionMatrix[2][1] = FOUND_FIRST_NOUN;
 	transitionMatrix[2][3] = FOUND_VERB;
-	transitionMatrix[3][1] = FOUND_SECOND_ARTICLE;
+	transitionMatrix[3][0] = FOUND_SECOND_ARTICLE;
 	transitionMatrix[3][4] = FOUND_SECOND_PROPER_NOUN;
 	transitionMatrix[3][5] = FOUND_FINAL_PERIOD;
 	transitionMatrix[4][3] = FOUND_VERB;
-	transitionMatrix[5][1] = FOUND_SECOND_NOUN;
+	transitionMatrix[5][1] = FOUND_SECOND_ARTICLE;
 	transitionMatrix[5][2] = FOUND_SECOND_NOUN;
 	transitionMatrix[6][1] = FOUND_SECOND_NOUN;
 	transitionMatrix[6][5] = FOUND_FINAL_PERIOD;
