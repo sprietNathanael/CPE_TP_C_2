@@ -89,7 +89,7 @@ int parseSentence(char* sentence)
 		foundWord = strtok(NULL, delimiter);
 	}
 	// If the automaton has not processed to a final period
-	if(finishedState == NOT_FINISHED)
+	if(finishedState == NOT_FINISHED || finishedState == FAILURE)
 	{
 		return(0);
 	}
