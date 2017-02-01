@@ -164,4 +164,11 @@ int parseSentence(char* sentence);
  */
 OutputState actionOfState(InputState state);
 
+/**
+ * Remove all the occurences of a char in the sentence
+ * @param sentence     The sentence
+ * @param charToRemove The char to remove
+ */
+void removeOccurences(char* sentence, char charToRemove);
+
 #endif

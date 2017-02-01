@@ -62,6 +62,9 @@ void freeTransitionMatrix()
 int parseSentence(char* sentence)
 {
 	printf("\nAnalysing '%s' :\n",sentence);
+	removeOccurences(sentence,',');
+	removeOccurences(sentence,';');
+	removeOccurences(sentence,':');
 	InputState currentState = WAIT_ARTICLE;
 	OutputState finishedState = NOT_FINISHED;
 	const char delimiter[2] = " ";
@@ -130,4 +133,16 @@ OutputState actionOfState(InputState state)
 		return(NOT_FINISHED);
 	}
 
+}
+
+void removeOccurences(char* sentence, char charToRemove)
+{
+	char *read = sentence, *write = sentence;
+	//Browse the sentence and copy it without the char to remove
+	while (*read)
+	{
+		*write = *read++;
+		write += (*write != charToRemove);
+	}
+	*write = '\0';
 }
