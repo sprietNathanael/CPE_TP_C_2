@@ -14,15 +14,15 @@ InputState** generateTransitionMatrix()
 	int rowIncrement = 0;
 	InputState** array;
 	// Memory allocation for the first level of pointer
-	array = malloc(INPUT_STATE_NUMBER*sizeof(InputState*));
+	array = malloc(STATE_NUMBER*sizeof(InputState*));
 	// Browse the rows of the array
-	for(rowIncrement = 0; rowIncrement < INPUT_STATE_NUMBER; rowIncrement++)
+	for(rowIncrement = 0; rowIncrement < STATE_NUMBER; rowIncrement++)
 	{
 		// Memory allocation for the second level of pointers
-		array[rowIncrement] = malloc(STATE_NUMBER*sizeof(InputState));
+		array[rowIncrement] = malloc(INPUT_STATE_NUMBER*sizeof(InputState));
 		int colIncrement = 0;
 		// Browse the columns of the array
-		for(colIncrement = 0; colIncrement < STATE_NUMBER; colIncrement++)
+		for(colIncrement = 0; colIncrement < INPUT_STATE_NUMBER; colIncrement++)
 		{
 			array[rowIncrement][colIncrement] = NOT_CORRECT;
 		}
@@ -49,7 +49,7 @@ void freeTransitionMatrix(InputState** matrix)
 {
 	int rowIncrement;
 	// Browse the rows of the  matrix
-	for(rowIncrement = 0; rowIncrement < INPUT_STATE_NUMBER; rowIncrement++)
+	for(rowIncrement = 0; rowIncrement < STATE_NUMBER; rowIncrement++)
 	{
 		// Free the second level of pointers
 		free(matrix[rowIncrement]);
