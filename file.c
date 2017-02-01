@@ -46,7 +46,6 @@ Dictionary* readDictionary(char* path)
 		foundWord = strtok(NULL, " ");
 		// Deduce the type from the string then save it to the dictionary
 		customArray[i].inputType = charToInputType(foundWord[0]);
-		printf("%s : %s ; %d\n", currentLine, customArray[i].word, customArray[i].inputType);
 		i++;
 	}
 	// Create the new dictionary
