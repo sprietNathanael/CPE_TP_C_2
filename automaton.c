@@ -62,6 +62,11 @@ void freeTransitionMatrix(InputState** matrix)
 int parseSentence(char* sentence)
 {
 	const char delimiter[2] = " ";
+	int sentenceLength = strlen(sentence);
+	if(sentence[sentenceLength-1] == '.' && sentence[sentenceLength-2] != ' ')
+	{
+		strcpy(sentence+sentenceLength-1, " .");
+	}
 	char *foundWord;
 	foundWord = strtok(sentence, delimiter);
 

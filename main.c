@@ -14,7 +14,7 @@
 int main()
 {
 	InputState** myTransitionMatrix = generateTransitionMatrix();
-	char testString[1000] = "Ceci est un test";
+	char testString[1000] = "Ceci est un test.";
 	int test = parseSentence(testString);
 	freeTransitionMatrix(myTransitionMatrix);
 	return 0;
