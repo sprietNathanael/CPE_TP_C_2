@@ -59,7 +59,9 @@ void freeTransitionMatrix()
 
 int parseSentence(char* sentence)
 {
+	printf("Analysing '%s' :\n",sentence);
 	InputState currentState = WAIT_ARTICLE;
+	OutputState finishedState = NOT_FINISHED;
 	const char delimiter[2] = " ";
 	int sentenceLength = strlen(sentence);
 	if(sentence[sentenceLength-1] == '.' && sentence[sentenceLength-2] != ' ')
@@ -69,13 +71,17 @@ int parseSentence(char* sentence)
 	char *foundWord;
 	foundWord = strtok(sentence, delimiter);
 
-	/* walk through other tokens */
-	while( foundWord != NULL )
+	// Browse the other words
+	while( foundWord != NULL  && finishedState == NOT_FINISHED)
 	{
 		InputType wordType = findTypeOfWord(foundWord);
 		currentState = transitionMatrix[currentState][wordType];
-		actionOfState(currentState)
+		finishedState = actionOfState(currentState);
 		foundWord = strtok(NULL, delimiter);
+	}
+	if(finishedState == NOT_FINISHED)
+	{
+		return(0);
 	}
 	return(1);
 }
@@ -90,5 +96,26 @@ InputType findTypeOfWord(char* word)
 			return(dictionary[i].inputType);
 		}
 	}
+	// If the word is not found, return UNKNOWN_WORD type
 	return(UNKNOWN_WORD);
+}
+
+OutputState actionOfState(InputState state)
+{
+	// If the sentence is not correct, return FAILURE type
+	if(state == NOT_CORRECT)
+	{
+		return(FAILURE);
+	}
+	// If the sentence is correct, return SUCCESS type
+	else if(state == FOUND_FINAL_PERIOD)
+	{
+		return(SUCCESS);
+	}
+	// If the process is not finished yet, return NOT_FINISHED type
+	else
+	{
+		return(NOT_FINISHED);
+	}
+
 }
