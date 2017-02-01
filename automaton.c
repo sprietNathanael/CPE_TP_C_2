@@ -61,7 +61,7 @@ void freeTransitionMatrix()
 
 int parseSentence(char* sentence)
 {
-	printf("Analysing '%s' :\n",sentence);
+	printf("\nAnalysing '%s' :\n",sentence);
 	InputState currentState = WAIT_ARTICLE;
 	OutputState finishedState = NOT_FINISHED;
 	const char delimiter[2] = " ";
