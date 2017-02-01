@@ -14,12 +14,23 @@
 #ifndef AUTOMATON_H
 #define AUTOMATON_H
 
+
+/*
+***************************** Constants *************************
+*/
 #define STATE_NUMBER 10
 #define INPUT_STATE_NUMBER 7
 #define WORD_MAX_SIZE 255
 
 #define DICTIONARY_SIZE 18
 
+/*
+ ***************************** Enumerations *************************
+*/
+
+/**
+ * @brief      The different input states
+ */
 enum inputState
 {
 	WAIT_ARTICLE=0,
@@ -33,16 +44,28 @@ enum inputState
 	NOT_CORRECT=8,
 	FOUND_FINAL_PERIOD=9
 };
+/**
+* @brief      A type defined over the inputState enumeration
+*/
 typedef enum inputState InputState;
 
+/**
+ * @brief      The different output states
+ */
 enum outputState
 {
 	NOT_FINISHED=-1,
 	FAILURE=0,
 	SUCCESS=1
 };
+/**
+* @brief      A type defined over the outputState enumeration
+*/
 typedef enum outputState OutputState;
 
+/**
+ * @brief      The different input types
+ */
 enum inputType
 {
 	UNKNOWN_WORD=-1,
@@ -53,15 +76,35 @@ enum inputType
 	PROPER_NOUN=4,
 	PERIOD=5
 };
+/**
+* @brief      A type defined over the inputType enumeration
+*/
 typedef enum inputType InputType;
 
+/*
+***************************** Structures *************************
+*/
+
+/**
+ * @brief      Represents a dictionary entry
+ */
 struct dictionaryEntry
 {
-	char word[WORD_MAX_SIZE];
-	InputType inputType;
+	char word[WORD_MAX_SIZE];/*!< The word itself */
+	InputType inputType;/*!< The type of the word */
 };
+/**
+* @brief      A type defined over the Matrix structure
+*/
 typedef struct dictionaryEntry DictionaryEntry;
 
+/*
+***************************** Statics *************************
+*/
+
+/**
+ * @brief      The main words dictionary
+ */
 static const DictionaryEntry dictionary[]=
 {
 	{"le",ARTICLE},
@@ -84,16 +127,40 @@ static const DictionaryEntry dictionary[]=
 	{".",PERIOD}
 };
 
+/**
+ * @brief      The transition matrix
+ */
 static InputState** transitionMatrix;
 
+/**
+ * @brief	Generates the transition matrix with the correct values
+ */
 void generateTransitionMatrix();
 
+/**
+ * @brief	Free the transition matrix
+ */
 void freeTransitionMatrix();
 
+/**
+ * Finds the type of a given word into the dictionary
+ * @param  word The given word
+ * @return      The type of the word
+ */
 InputType findTypeOfWord(char* word);
 
+/**
+ * Analyses the sentence and return wether it is correct or not
+ * @param  sentence The given sentence to analyse
+ * @return          1 if correct, 0 else
+ */
 int parseSentence(char* sentence);
 
+/**
+ * Determine which output type is to be return according to a given input state
+ * @param  state The given input state
+ * @return       The output type to be returned
+ */
 OutputState actionOfState(InputState state);
 
 #endif
