@@ -14,6 +14,11 @@
 #ifndef FILE_H
 #define FILE_H
 
-int readDictionary(char* path);
+/**
+ * Read dictionary from a file
+ * @param  path A path to the file
+ * @return      The created dictionary
+ */
+Dictionary* readDictionary(char* path);
 
 #endif

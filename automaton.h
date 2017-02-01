@@ -22,8 +22,6 @@
 #define INPUT_STATE_NUMBER 7
 #define WORD_MAX_SIZE 255
 
-#define DICTIONARY_SIZE 19
-
 /*
  ***************************** Enumerations *************************
 */
@@ -98,6 +96,20 @@ struct dictionaryEntry
 */
 typedef struct dictionaryEntry DictionaryEntry;
 
+/**
+ * @brief      Represents a dictionary
+ */
+struct dictionary
+{
+	DictionaryEntry* array;/*!< The dictionary itself */
+	int size;/*!< The size of the array */
+};
+/**
+* @brief      A type defined over the Matrix structure
+*/
+typedef struct dictionary Dictionary;
+
+
 /*
 ***************************** Statics *************************
 */
@@ -105,7 +117,7 @@ typedef struct dictionaryEntry DictionaryEntry;
 /**
  * @brief      The main words dictionary
  */
-static const DictionaryEntry dictionary[]=
+static DictionaryEntry baseArray[] =
 {
 	{"le",ARTICLE},
 	{"la",ARTICLE},
@@ -128,15 +140,20 @@ static const DictionaryEntry dictionary[]=
 	{".",PERIOD}
 };
 
+static const Dictionary baseDictionary = {baseArray,19};
+
 /**
  * @brief      The transition matrix
  */
 static InputState** transitionMatrix;
 
+static Dictionary* customDictionary;
+
 /**
  * @brief	Generates the transition matrix with the correct values
+ * @param	customDictionary	A custom dictionary
  */
-void generateTransitionMatrix();
+void generateTransitionMatrix(Dictionary* customDictionary);
 
 /**
  * @brief	Free the transition matrix

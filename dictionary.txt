@@ -8,5 +8,3 @@ gris 1
 grand 1
 Fanny 4
 Fred 4
-! 5
-? 5

@@ -17,14 +17,17 @@
 
 int main()
 {
+	Dictionary* customDictionary = NULL;
 	// Read a file
-	if(!readDictionary("./dictionary.txt"))
+	customDictionary = readDictionary("./dictionary.txt");
+	// Check if the file exists
+	if(customDictionary == NULL)
 	{
-		printf("dictionary.txt does not exists\n");
+		printf("The file './dictionary.txt' does not exitst\n");
 	}
 
 	// Initialise automaton
-	generateTransitionMatrix();
+	generateTransitionMatrix(customDictionary);
 
 	// Make an array of string to test
 	char test[TEST_NUMBER][TEST_MAX_SIZE];
@@ -37,10 +40,11 @@ int main()
 	strcpy(test[6],"Jean mange Martin.");
 	strcpy(test[7],"Jean mange le chat.");
 	strcpy(test[8],"la verte souris grosse petit mange le blanc verte chat petit.");
-	strcpy(test[9],".");
-	strcpy(test[10],"");
-	strcpy(test[11],"le joli chat joue");
-	strcpy(test[12],"le joli chat miaule.");
+	strcpy(test[9],"les loup gris court.");
+	strcpy(test[10],".");
+	strcpy(test[11],"");
+	strcpy(test[12],"le joli chat joue");
+	strcpy(test[13],"le joli chat miaule.");
 
 	// Test the array
 	int i = 0;
@@ -72,5 +76,12 @@ int main()
 
 	// Free the automaton
 	freeTransitionMatrix();
+
+	// Free the custom dictionary if it exists
+	if(customDictionary != NULL)
+	{
+		free(customDictionary->array);
+		free(customDictionary);
+	}
 	return 0;
 }

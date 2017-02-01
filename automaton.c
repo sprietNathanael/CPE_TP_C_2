@@ -9,8 +9,9 @@
 
 #include "automaton.h"
 
-void generateTransitionMatrix()
+void generateTransitionMatrix(Dictionary* newDictionary)
 {
+	customDictionary = newDictionary;
 	int rowIncrement = 0;
 	// Memory allocation for the first level of pointer
 	transitionMatrix = malloc(STATE_NUMBER*sizeof(InputState*));
@@ -103,12 +104,25 @@ InputType findTypeOfWord(char* word)
 {
 	int i = 0;
 	// Browses the dictionary
-	for(i = 0; i < DICTIONARY_SIZE; i++)
+	for(i = 0; i < baseDictionary.size; i++)
 	{
 		// If the word is found return its type
-		if(!strcmp(dictionary[i].word,word))
+		if(!strcmp(baseDictionary.array[i].word,word))
 		{
-			return(dictionary[i].inputType);
+			return(baseDictionary.array[i].inputType);
+		}
+	}
+	// If there is a custom dictionary
+	if(customDictionary != NULL)
+	{
+		// Browses the dictionary
+		for(i = 0; i < customDictionary->size; i++)
+		{
+			// If the word is found return its type
+			if(!strcmp(customDictionary->array[i].word,word))
+			{
+				return(customDictionary->array[i].inputType);
+			}
 		}
 	}
 	// If the word is not found, return UNKNOWN_WORD type
