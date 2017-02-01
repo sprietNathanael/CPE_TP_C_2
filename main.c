@@ -14,6 +14,10 @@
 
 #define TEST_NUMBER 13
 #define TEST_MAX_SIZE 1000
+
+#define ANSI_COLOR_RED "\x1b[31m"
+#define ANSI_COLOR_GREEN "\x1b[32m"
+#define ANSI_COLOR_RESET "\x1b[0m"
 int main(int argc, char const *argv[])
 {
 	Dictionary* customDictionary = NULL;
@@ -54,25 +58,36 @@ int main(int argc, char const *argv[])
 	{
 		if(parseSentence(test[i]))
 		{
-			printf("The sentence is correct\n");
+			printf(ANSI_COLOR_GREEN"The sentence is correct"ANSI_COLOR_RESET"\n");
 		}
 		else
 		{
-			printf("The sentence is not correct\n");
+			printf(ANSI_COLOR_RED"The sentence is not correct"ANSI_COLOR_RESET"\n");
 		}
 	}
 
 	char user_entry[TEST_MAX_SIZE];
-	printf("\n\n\nEntrez une phrase à analyser :\n");
-	scanf("%[^\n]s", user_entry);
-	if(parseSentence(user_entry))
+	int userEntryLoop = 1;
+	do
 	{
-		printf("The sentence is correct\n");
-	}
-	else
-	{
-		printf("The sentence is not correct\n");
-	}
+		printf("\n\n\nEntrez une phrase à analyser  ('quit' pour quitter) :\n");
+		scanf("%[^\n]%*c", user_entry);
+		if(strcmp(user_entry,"quit"))
+		{
+			if(parseSentence(user_entry))
+			{
+				printf(ANSI_COLOR_GREEN"The sentence is correct"ANSI_COLOR_RESET"\n");
+			}
+			else
+			{
+				printf(ANSI_COLOR_RED"The sentence is not correct"ANSI_COLOR_RESET"\n");
+			}
+		}
+		else
+		{
+			userEntryLoop = 0;
+		}
+	} while(userEntryLoop);
 
 
 
